@@ -18,6 +18,11 @@ require("lazy").setup({
     -- import/override with your plugins
     --
     --
+    { "nvim-java/nvim-java" },
+    {
+      "nvim-treesitter/nvim-treesitter",
+      opts = { ensure_installed = { "java" } },
+    },
     { "ThePrimeagen/vim-be-good" },
     { import = "plugins" },
   },
