@@ -1,2 +1,2 @@
 alias bat="batcat"
-alias dotg="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+alias dgit="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
