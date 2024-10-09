@@ -120,9 +120,9 @@ source $ZSH/oh-my-zsh.sh
 
 source "$HOME/.bash_aliases"
 
-# if [ -f ~/.work_aliases ]; then
-#     source ~/.work_aliases
-# fi
+if [ -f ~/.work_aliases.sh ]; then
+    source ~/.work_aliases.sh
+fi
 
 if [ -f ~/.config/exercism/exercism_completion.bash ]; then
   source ~/.config/exercism/exercism_completion.bash
