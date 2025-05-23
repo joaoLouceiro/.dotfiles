@@ -1,19 +1,30 @@
-function Map(mode, lhs, rhs, opts)
-    local options = { noremap = true, silent = true }
-    if opts then
-        options = vim.tbl_extend("force", options, opts)
+-- Call vim.keymap.set
+-- @param t (table)
+--  - t[1] *required*: lhs mapping 
+--  - t[2] *required*: rhs mapping
+--  - mode *optional*: defaults to 'n'
+--  - opts *optional*: table with options
+function SetKeymap(t)
+    if t[1] == nil or type(t[1]) ~= 'string' then
+        error("No lhs")
+    elseif t[2] == nil or type(t[2]) ~= 'string' then
+        error("No rhs")
     end
-    vim.keymap.set(mode, lhs, rhs, options)
+    local options = { noremap = true, silent = true }
+    if t.opts then
+        options = vim.tbl_extend("force", options, t.opts)
+    end
+    vim.keymap.set(t.mode or 'n', t[1], t[2], options)
 end
 
-vim.g.mapleader = " "
+-- vim.g.mapleader = " "
 
-Map('n', '<C-h>', '<C-w><C-h>')
-Map('n', '<C-j>', '<C-w><C-j>')
-Map('n', '<C-k>', '<C-w><C-k>')
-Map('n', '<C-l>', '<C-w><C-l>')
+SetKeymap({'<C-h>', '<C-w><C-h>'})
+SetKeymap({'<C-j>', '<C-w><C-j>'})
+SetKeymap({'<C-k>', '<C-w><C-k>'})
+SetKeymap({'<C-l>', '<C-w><C-l>'})
 
+SetKeymap({ '<C-_>', 'gcc', mode='n', opts = { remap = true }})
+SetKeymap({ '<C-_>', 'gc', mode='v', opts = { remap = true }})
 
--- vim.keymap.set('i', '<C-_>', '<Esc>:Commentary<CR>')
--- vim.keymap.set('n', '<C-_>', 'gcc', { remap = true })
--- vim.keymap.set('v', '<C-_>', 'gc',  { remap = true })
+SetKeymap({ '<C-s>', '<cmd>w<cr>'})
