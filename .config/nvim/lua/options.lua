@@ -46,4 +46,5 @@ opt.linebreak = true
 opt.list = true
 opt.showmode = false
 opt.spelllang = { "en", "pt" }
+opt.mouse = "a"
 
