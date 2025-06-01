@@ -14,6 +14,8 @@ return {
   ---@module "neo-tree"
   ---@type neotree.Config?
   opts = {
-    -- fill any relevant options here
+      window = {
+          -- position = 'right'
+      }
   }
 }

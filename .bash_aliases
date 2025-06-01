@@ -20,5 +20,9 @@ fi
 
 
 alias pya="activate_python"
-alias cfg='/usr/bin/git --git-dir=/home/jlouceiro/.cfg/ --work-tree=/home/jlouceiro'
 alias vim='nvim'
+
+# .dotfiles aliases
+alias cfg='/usr/bin/git --git-dir=/home/jlouceiro/.cfg/ --work-tree=/home/jlouceiro'
+alias cfga='cfg add'
+alias cfgs='cfg status'

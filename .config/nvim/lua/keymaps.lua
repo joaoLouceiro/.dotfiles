@@ -4,7 +4,7 @@
 --  - t[2] *required*: rhs mapping
 --  - mode *optional*: defaults to 'n'
 --  - opts *optional*: table with options
-function SetKeymap(t)
+local function SetKeymap(t)
     if t[1] == nil or type(t[1]) ~= 'string' then
         error("No lhs")
     elseif t[2] == nil or type(t[2]) ~= 'string' then
