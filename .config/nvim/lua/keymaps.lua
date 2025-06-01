@@ -12,6 +12,9 @@ local function map(mode, lhs, rhs, opts)
     end
 end
 
+map("n", "<C-u>", "<C-u>zz", { desc = "Move up and center" })
+map("n", "<C-d>", "<C-d>zz", { desc = "Move down and center" })
+
 -- better up/down
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
 map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
