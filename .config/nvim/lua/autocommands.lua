@@ -2,6 +2,21 @@ local function augroup(name)
   return vim.api.nvim_create_augroup("belazy_" .. name, { clear = true })
 end
 
+-- Kitty vars
+vim.api.nvim_create_autocmd({ "VimEnter" }, {
+    group = augroup("KittySetVarVimEnter"),
+    callback = function()
+        io.stdout:write("\x1b]1337;SetUserVar=in_editor=MQo\007")
+    end,
+})
+
+vim.api.nvim_create_autocmd({ "VimLeave" }, {
+    group = augroup("KittyUnsetVarVimLeave"),
+    callback = function()
+        io.stdout:write("\x1b]1337;SetUserVar=in_editor\007")
+    end,
+})
+
 -- Check if we need to reload the file when it changed
 vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
   group = augroup("checktime"),
