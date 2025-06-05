@@ -2,6 +2,7 @@ return {
     {
         "neovim/nvim-lspconfig",
         config = function ()
+            -- vim.lsp.enable("pylsp")
             -- local lspconfig = require('lspconfig')
             --
             -- lspconfig.lua_ls.setup {
@@ -64,6 +65,7 @@ return {
         opts = {
             library = {
                 { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+                { "nvim-dap-ui" }
             },
         },
     },

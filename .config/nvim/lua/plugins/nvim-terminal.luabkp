@@ -1,0 +1,4 @@
+return {
+    dir = "$HOME/projects/nvim-term/lua/nvim-term/",
+    dev = true
+}
