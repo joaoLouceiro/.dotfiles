@@ -15,6 +15,7 @@ end
 map("n", "<C-u>", "<C-u>zz", { desc = "Move up and center" })
 map("n", "<C-d>", "<C-d>zz", { desc = "Move down and center" })
 
+map("t", "<ESC>", "<C-\\><C-n>")
 
 
 -- better up/down
@@ -24,10 +25,14 @@ map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, 
 map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 
 -- Move to window using the <ctrl> hjkl keys
-map("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
-map("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
-map("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
-map("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
+map("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", noremap = false })
+map("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", noremap = false })
+map("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", noremap = false })
+map("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", noremap = false })
+map({"i", "t"}, "<C-h>", "<C-\\><C-n><C-w>h", { desc = "Go to Left Window"})
+map({"i", "t"}, "<C-j>", "<C-\\><C-n><C-w>j", { desc = "Go to Lower Window", noremap = false })
+map({"i", "t"}, "<C-k>", "<C-\\><C-n><C-w>k", { desc = "Go to Upper Window", noremap = false })
+map({"i", "t"}, "<C-l>", "<C-\\><C-n><C-w>l", { desc = "Go to Right Window", noremap = false })
 
 -- Move to window using the <ctrl> hjkl keys
 map("n", "<C-h>", "<cmd>KittyNavigateLeft<cr>", { desc = "Go to Left Window", remap = true })
@@ -62,6 +67,8 @@ map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
 map("n", "]b", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
+map("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete Buffer" })
+
 
 -- Clear search
 -- Clear search and stop snippet on escape

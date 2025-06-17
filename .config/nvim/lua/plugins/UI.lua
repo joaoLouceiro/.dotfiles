@@ -18,7 +18,7 @@ return {
         -- Optional; default configuration will be used if setup isn't called.
         config = function()
             require("everforest").setup({
-                transparent_background_level=0,
+                transparent_background_level=1,
                 background = "medium",
                 italics = true
             })
@@ -45,6 +45,32 @@ return {
     {
         'nvim-lualine/lualine.nvim',
         dependencies = { 'nvim-tree/nvim-web-devicons' },
-        opts = { }
+        opts = {
+        }
     },
+    {
+
+        'akinsho/bufferline.nvim',
+        version = "*",
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        opts = {
+            options = {
+                -- separator_style = "/",
+                themable = true,
+                offsets = {
+                    {
+                        filetype = "neo-tree",
+                        text = "Neo Tree",
+                        separator = true,
+                        text_align = "left"
+                    }
+                },
+                diagnostics = "nvim_lsp",
+                separator_style = { "", "" },
+                modified_icon = "●",
+                show_close_icon = false,
+                show_buffer_close_icons = true,
+            }
+        },
+    }
 }

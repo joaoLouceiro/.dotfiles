@@ -11,9 +11,9 @@ return {
                     enable = true,
                     keymaps = {
                         init_selection = "<Leader>ss", -- set to `false` to disable one of the mappings
-                        node_incremental = "<Leader>se",
-                        scope_incremental = "<Leader>sc",
-                        node_decremental = "<Leader>sd",
+                        node_incremental = "<Leader>sl",
+                        -- scope_incremental = "<A-L>",
+                        node_decremental = "<Leader>sh",
                     },
                 },
                 textobjects = {
