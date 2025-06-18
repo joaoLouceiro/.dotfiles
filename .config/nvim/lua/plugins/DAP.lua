@@ -1,3 +1,4 @@
+local ui_state = { open=false }
 return {
     {
         "mfussenegger/nvim-dap",
@@ -49,6 +50,13 @@ return {
               widgets.centered_float(widgets.frames)
             end)
 
+            vim.keymap.set("n", "<leader>du", function()
+                if ui_state.open then
+                    require("dapui").close()
+                else
+                    require("dapui").open()
+                end
+            end)
 
             vim.keymap.set("n", "<space>db", dap.toggle_breakpoint)
             vim.keymap.set("n", "<space>gb", dap.run_to_cursor)
@@ -66,19 +74,24 @@ return {
             vim.keymap.set("n", "<F4>", dap.step_back)
             vim.keymap.set("n", "<F6>", dap.restart)
 
+
             dap.listeners.before.attach.dapui_config = function()
                 ui.open()
                 vim.cmd("Neotree close")
+                ui_state.open = true
             end
             dap.listeners.before.launch.dapui_config = function()
                 vim.cmd("Neotree close")
                 ui.open()
+                ui_state.open = true
             end
             dap.listeners.before.event_terminated.dapui_config = function()
                 ui.close()
+                ui_state.open = false
             end
             dap.listeners.before.event_exited.dapui_config = function()
                 ui.close()
+                ui_state.open = false
             end
         end
     },
