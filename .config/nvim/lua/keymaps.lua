@@ -1,16 +1,4 @@
-local function map(mode, lhs, rhs, opts)
-    local options = { noremap = true, silent = true }
-    if opts then
-        options = vim.tbl_extend("force", options, opts)
-    end
-    if type(mode) == "table" then
-        for _, value in ipairs(mode) do
-            vim.keymap.set(value, lhs, rhs, options)
-        end
-    else
-        vim.keymap.set(mode, lhs, rhs, options)
-    end
-end
+local map = require("functions/functions").map
 
 map("n", "<C-u>", "<C-u>zz", { desc = "Move up and center" })
 map("n", "<C-d>", "<C-d>zz", { desc = "Move down and center" })
@@ -55,10 +43,10 @@ map("v", "<A-j>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc 
 map("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
 
 -- Comments - some shells interpret <C-/> as <C-_>
-map('n',  '<C-/>', 'gcc', { remap = true })
-map('n',  '<C-_>', 'gcc', { remap = true })
-map('v',  '<C-/>', 'gc', { remap = true })
-map('v',  '<C-_>', 'gc', { remap = true })
+map('n',  '<C-/>', 'gcc', { remap = true, desc = "Toggle Comment" })
+map('n',  '<C-_>', 'gcc', { remap = true, desc = "Toggle Comment" })
+map('v',  '<C-/>', 'gc', { remap = true, desc = "Toggle Comment" })
+map('v',  '<C-_>', 'gc', { remap = true, desc = "Toggle Comment" })
 
 -- buffers
 map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
@@ -67,7 +55,8 @@ map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
 map("n", "]b", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
-map("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete Buffer" })
+map("n", "<leader>bd", require('functions/functions').smart_bdelete, { desc = "Delete Buffer (keep split)" })
+
 
 
 -- Clear search
@@ -81,11 +70,16 @@ end, { expr = true, desc = "Escape and Clear hlsearch" })
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 
 --keywordprg
-map("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg" })
+map("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Hover Keyword" })
 
 -- better indenting
-map("v", "<", "<gv")
-map("v", ">", ">gv")
+map("v", "<", "<gv", {desc = "Ident Left"})
+map("v", ">", ">gv", {desc = "Ident Right"})
 
 -- quit
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
+
+-- Help hover in floating window
+-- map("n", "<leader>H", require('functions.smart_bdelete').help_hover, { desc = "Show help in hover window" })
+
+map("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", { desc = "Code Actions" })

@@ -1,99 +1,106 @@
-local ui_state = { open=false }
+local dap = require("dap")
+dap.set_log_level('DEBUG')
+
 return {
+    {
+        "mfussenegger/nvim-dap-python",
+        dependencies = {
+            "mfussenegger/nvim-dap",
+        },
+        config = function()
+           -- require("mason-nvim-dap").setup({
+           --     ensure_installed = { "python" }
+           -- })
+        end,
+        keys = {
+        }
+    },
+    {
+        "jay-babu/mason-nvim-dap.nvim",
+        dependencies = {
+            "williamboman/mason.nvim",
+            "mfussenegger/nvim-dap",
+        },
+        config = function()
+           -- require("mason-nvim-dap").setup({
+           --     ensure_installed = { "python" }
+           -- })
+        end
+    },
     {
         "mfussenegger/nvim-dap",
         dependencies = {
             "mason-org/mason.nvim",
             "rcarriga/nvim-dap-ui",
             "nvim-neotest/nvim-nio",
-            "mfussenegger/nvim-dap-python",
-            "jbyuki/one-small-step-for-vimkind"
         },
         lazy = false,
-        config = function()
-
-            local dap = require"dap"
-            local ui = require("dapui")
-            require("dap-python").setup("python")
-
-            dap.set_log_level('DEBUG')
+        config = function ()
             require("dapui").setup()
 
-            dap.configurations.lua = {
-              {
-                type = 'nlua',
-                request = 'attach',
-                name = "Attach to running Neovim instance",
-              }
-            }
+            local dap_python = require("dap-python")
+            dap_python.setup("~/.virtualenvs/debugpy/bin/python")
+            dap_python.test_runner = "pytest"
+        end,
+        keys = {
+            {"<F5>", dap.continue, desc = "DAP: Continue" },
+            {"<C-F5>", dap.close, desc = "DAP: Close" },
+            {"<F1>", dap.step_over, desc = "DAP: Step Over" },
+            {"<F2>", dap.step_into, desc = "DAP: Step Into" },
+            {"<F3>", dap.step_out, desc = "DAP: Step Out" },
+            {"<F4>", dap.step_back, desc = "DAP: Step Back" },
+            {"<F6>", dap.restart, desc = "DAP: Restart" },
+            {"<space>db", dap.toggle_breakpoint, desc = "DAP: Toggle Breakpoint" },
+            {"<space>dg", dap.run_to_cursor, desc = "DAP: Go to Cursor" },
 
-            dap.adapters.nlua = function(callback, config)
-              callback({ type = 'server', host = config.host or "127.0.0.1", port = config.port or 8086 })
-            end
 
-            -- vim.keymap.set('n', '<leader>db', require"dap".toggle_breakpoint, { noremap = true })
-            -- vim.keymap.set('n', '<leader>dc', require"dap".continue, { noremap = true })
-            -- vim.keymap.set('n', '<leader>do', require"dap".step_over, { noremap = true })
-            -- vim.keymap.set('n', '<leader>di', require"dap".step_into, { noremap = true })
-
-            vim.keymap.set('n', '<leader>dl', function()
-              require("osv").launch({port = 8086})
-            end, { noremap = true })
-
-            vim.keymap.set('n', '<leader>dw', function()
-              local widgets = require("dap.ui.widgets")
-              widgets.hover()
-            end)
-
-            vim.keymap.set('n', '<leader>df', function()
-              local widgets = require("dap.ui.widgets")
-              widgets.centered_float(widgets.frames)
-            end)
-
-            vim.keymap.set("n", "<leader>du", function()
-                if ui_state.open then
-                    require("dapui").close()
-                else
-                    require("dapui").open()
-                end
-            end)
-
-            vim.keymap.set("n", "<space>db", dap.toggle_breakpoint)
-            vim.keymap.set("n", "<space>gb", dap.run_to_cursor)
-
-            -- Eval var under cursor
-            vim.keymap.set("n", "<space>?", function()
-                require("dapui").eval(nil, { enter = true })
-            end)
-
-            vim.keymap.set("n", "<F5>", dap.continue)
-            vim.keymap.set("n", "<F29>", dap.close)
-            vim.keymap.set("n", "<F1>", dap.step_over)
-            vim.keymap.set("n", "<F2>", dap.step_into)
-            vim.keymap.set("n", "<F3>", dap.step_out)
-            vim.keymap.set("n", "<F4>", dap.step_back)
-            vim.keymap.set("n", "<F6>", dap.restart)
-
+            {"<leader>dm", "<cmd>lua require('dap-python').test_method()<CR>", desc = "DAP (Python): Test Method"},
+            {"<leader>dc", "<cmd>lua require('dap-python').test_class()<CR>", desc = "Python: Test Class"},
+            {"<leader>ds", "<cmd>lua require('dap-python').debu_selection()<CR>", desc = "DAP (Python): Debug Selection"},
+        }
+    },
+    {
+        "rcarriga/nvim-dap-ui",
+        dependencies = {
+            "mfussenegger/nvim-dap",
+            "nvim-neotest/nvim-nio"
+        },
+        config = function ()
+            local ui = require("dapui")
 
             dap.listeners.before.attach.dapui_config = function()
                 ui.open()
                 vim.cmd("Neotree close")
-                ui_state.open = true
             end
             dap.listeners.before.launch.dapui_config = function()
                 vim.cmd("Neotree close")
                 ui.open()
-                ui_state.open = true
             end
-            dap.listeners.before.event_terminated.dapui_config = function()
-                ui.close()
-                ui_state.open = false
-            end
-            dap.listeners.before.event_exited.dapui_config = function()
-                ui.close()
-                ui_state.open = false
-            end
-        end
-    },
-    { "rcarriga/nvim-dap-ui", dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} }
+            -- vim.keymap.set("n", "K", function()
+            --     -- local dap_ok, dap = pcall(require, "dap")
+            --     -- local dapui_ok, dapui = pcall(require, "dapui")
+            --     if dap.session() then
+            --         ui.eval(nil, { enter = true })
+            --     else
+            --         vim.cmd("normal! K")
+            --     end
+            -- end, { desc = "Contextual Hover/Eval" })
+            -- dap.listeners.before.event_terminated.dapui_config = function()
+            --     ui.close()
+            -- end
+            -- dap.listeners.before.event_exited.dapui_config = function()
+            --     ui.close()
+            -- end
+        end,
+        keys = {
+            { "<leader>du", "<cmd>lua require('dapui').toggle()<CR>", desc = "DAP: Toggle UI"  },
+            { "K", function ()
+                if dap.session() then
+                    require("dapui").eval(nil, { enter = true , border = "solid" })
+                else
+                    vim.lsp.buf.hover({ border = "solid", enter = true })
+                end
+            end, desc = "DAP: Toggle UI"  },
+        }
+    }
 }

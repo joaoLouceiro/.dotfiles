@@ -1,0 +1,2 @@
+- Make nvim-dap-python keymaps filetype specific
+- Read [https://dev.to/ralphsebastian/masonnvim-the-ultimate-guide-to-managing-your-neovim-tooling-4520]

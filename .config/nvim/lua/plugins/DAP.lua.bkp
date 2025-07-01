@@ -1,0 +1,80 @@
+local dap = require("dap")
+dap.set_log_level('DEBUG')
+
+return {
+    {
+        "mfussenegger/nvim-dap-python",
+        dependencies = {
+            "mfussenegger/nvim-dap",
+        },
+        config = function ()
+            local dap_python = require("dap-python")
+            dap_python.setup("~/.virtualenvs/debugpy/bin/python")
+            dap_python.test_runner = "pytest"
+        end
+    },
+    {
+        "jay-babu/mason-nvim-dap.nvim",
+        dependencies = {
+            "williamboman/mason.nvim",
+            "mfussenegger/nvim-dap",
+        },
+        config = function()
+           require("mason-nvim-dap").setup({
+               ensure_installed = { "python" }
+           })
+        end
+    },
+    {
+        "mfussenegger/nvim-dap",
+        dependencies = {
+            "mason-org/mason.nvim",
+            "rcarriga/nvim-dap-ui",
+            "nvim-neotest/nvim-nio",
+        },
+        lazy = false,
+        config = function ()
+            require("nvim-dap").setup({})
+        end,
+        keys = {
+            {"<F5>", dap.continue, desc = "DAP: Continue" },
+            {"<F29>", dap.close, desc = "DAP: Close" },
+            {"<F1>", dap.step_over, desc = "DAP: Step Over" },
+            {"<F2>", dap.step_into, desc = "DAP: Step Into" },
+            {"<F3>", dap.step_out, desc = "DAP: Step Out" },
+            {"<F4>", dap.step_back, desc = "DAP: Step Back" },
+            {"<F6>", dap.restart, desc = "DAP: Restart" },
+            {"<space>db", dap.toggle_breakpoint, desc = "DAP: Toggle Breakpoint" },
+            {"<space>gb", dap.run_to_cursor, desc = "DAP: Go to Cursor" },
+            -- {"<space>?", require("dapui").eval(nil, { enter = true }), desc = "DAP: eval expression" }
+        }
+    },
+    {
+        "rcarriga/nvim-dap-ui",
+        dependencies = {
+            "mfussenegger/nvim-dap",
+            "nvim-neotest/nvim-nio"
+        },
+        config = function ()
+            local ui = require("dapui")
+
+            dap.listeners.before.attach.dapui_config = function()
+                ui.open()
+                vim.cmd("Neotree close")
+            end
+            dap.listeners.before.launch.dapui_config = function()
+                vim.cmd("Neotree close")
+                ui.open()
+            end
+            dap.listeners.before.event_terminated.dapui_config = function()
+                ui.close()
+            end
+            dap.listeners.before.event_exited.dapui_config = function()
+                ui.close()
+            end
+        end,
+        keys = {
+            { "<leader>du", "<cmd>lua require('dapui').toggle()<CR>", desc = "Debugger: Toggle UI"  }
+        }
+    }
+}

@@ -72,5 +72,12 @@ return {
                 show_buffer_close_icons = true,
             }
         },
+        -- keys = {
+        --     {
+        --         "<leader>bdo",
+        --         "<cmd>BufferLineCloseOthers<CR>",
+        --         desc = "Close other buffers"
+        --     }
+        -- }
     }
 }
