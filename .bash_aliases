@@ -6,7 +6,6 @@ activate_python() {
     fi
 }
 
-alias ll="ls -ltra"
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
@@ -19,8 +18,11 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 
-alias pya="activate_python"
+alias ll='ls -ltra'
+alias pya='activate_python'
+alias nvim='NVIM_APPNAME=nvim-lazyvim nvim'
 alias vim='nvim'
+alias clip='xclip -sel clip'
 
 alias nconf='nvim ~/.config/nvim/'
 alias kconf='nvim ~/.config/kitty/'
