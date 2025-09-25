@@ -1,4 +1,4 @@
-export VCPKG_ROOT=$HOME/projects/vcpkg/
+export VCPKG_ROOT=$HOME/projects/vcpkg
 
 PATH=$PATH
 PATH+=:$HOME/bin
