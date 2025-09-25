@@ -45,6 +45,7 @@ return {
         keys = {
             {"<F5>", dap.continue, desc = "DAP: Continue" },
             {"<C-F5>", dap.close, desc = "DAP: Close" },
+            {"<F29>", dap.close, desc = "DAP: Close" },
             {"<F1>", dap.step_over, desc = "DAP: Step Over" },
             {"<F2>", dap.step_into, desc = "DAP: Step Into" },
             {"<F3>", dap.step_out, desc = "DAP: Step Out" },
