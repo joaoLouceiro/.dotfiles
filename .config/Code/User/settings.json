@@ -1,0 +1,15 @@
+{
+    "C_Cpp.intelliSenseEngine": "disabled",
+    "workbench.sideBar.location": "right",
+    "containers.containerClient": "com.microsoft.visualstudio.containers.docker",
+    "containers.orchestratorClient": "com.microsoft.visualstudio.orchestrators.dockercompose",
+    "github.copilot.enable": {
+        "*": false,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    },
+    "editor.lineNumbers": "relative",
+    "quarkus.tools.debug.terminateProcessOnExit": "Always terminate",
+    "terminal.integrated.stickyScroll.enabled": false,
+}

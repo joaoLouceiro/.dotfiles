@@ -1,0 +1,44 @@
+{
+    "workbench.sideBar.location": "right",
+    "github.copilot.enable": {
+        "*": false,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    },
+    "editor.lineNumbers": "relative",
+    "terminal.integrated.stickyScroll.enabled": false,
+    "[java]": {
+        "editor.defaultFormatter": "redhat.java"
+    },
+    "boot-java.rewrite.reconcile": true,
+    "json.schemas": [],
+    "dbcode.connections": [
+        {
+            "connectionId": "cw2usk8JacZ2HqVv2echn",
+            "name": "postgres-test",
+            "driver": "postgres",
+            "color": "#8EA23B",
+            "connectionType": "host",
+            "host": "localhost",
+            "port": 5432,
+            "ssl": false,
+            "authMethod": "password",
+            "username": "postgres",
+            "password": "",
+            "savePassword": "secretStorage",
+            "database": "postgres",
+            "readOnly": false,
+            "postConnectionSqlType": "inline",
+            "connectionTimeout": 30,
+            "pinnedConnectionTimeout": "0",
+            "introspection": {
+                "progressive": false
+            }
+        }
+    ],
+    "workbench.colorCustomizations": {},
+    "dbcode.resultLocation": "panel",
+    "containers.containerClient": "com.microsoft.visualstudio.containers.docker",
+    "containers.orchestratorClient": "com.microsoft.visualstudio.orchestrators.dockercompose"
+}

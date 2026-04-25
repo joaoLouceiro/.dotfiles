@@ -1,0 +1,12 @@
+{
+    "C_Cpp.intelliSenseEngine": "disabled",
+    "editor.lineNumbers": "relative",
+    "workbench.sideBar.location": "right",
+    "github.copilot.enable": {
+        "*": false,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    },
+    "terminal.integrated.stickyScroll.enabled": false,
+}
