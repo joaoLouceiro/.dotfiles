@@ -1,7 +1,20 @@
 CompileFlags:
+  Add: [ -I/usr/include ]
   Compiler: clang
+  BuiltinHeaders: QueryDriver
+
 Diagnostics:
   ClangTidy:
     Add: [bugprone*, performance*]
+
 Documentation:
   CommentFormat: Doxygen
+
+Completion:
+  AllScopes: true
+  HeaderInsertion: IWYU
+
+Index:
+  StandardLibrary: true
+
+
