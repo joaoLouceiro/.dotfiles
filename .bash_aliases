@@ -14,7 +14,7 @@ alias ls='LC_COLLATE=C ls --group-directories-first --color=auto -IDesktop -IDoc
 alias ll='ls -la --color=auto'
 
 alias cat='bat'
-alias c='clear'
+alias cl='clear'
 alias grep='grep --color=auto'
 alias open='xdg-open'
 alias v='nvim'

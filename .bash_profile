@@ -4,7 +4,7 @@
 # This is where I keep all my environment variables. I'm pretty sure there are some more complex uses for it, but for now it suffices
 #
 
-[[ -f ~/.bashrc ]] && . ~/.bashrc
+[[ "$0" == "bash" ]] && [[ -f ~/.bashrc ]] && . ~/.bashrc
 
 PATH+="$HOME/.cargo/bin:"
 PATH+="$HOME/.local/bin:"
