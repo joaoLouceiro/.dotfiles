@@ -17,8 +17,19 @@ alias cat='bat'
 alias cl='clear'
 alias grep='grep --color=auto'
 alias open='xdg-open'
-alias v='nvim'
-alias vi='nvim'
-alias vim='nvim'
 alias zi='__zoxide_zi'
 alias config='/usr/bin/git --git-dir=/home/jlouceiro/.cfg/ --work-tree=/home/jlouceiro'
+
+alias fman='compgen -c | grep -e "^[a-z]" | uniq | fzf | xargs man'
+alias fcontainer="docker ps -a | awk '{print \$(NF)}' | tail -n +2 | fzf | xargs docker run"
+
+if type nvim >/dev/null 2>&1; then
+    alias v='nvim'
+    alias vi='nvim'
+    alias vim='nvim'
+fi
+
+if [[ "$(type -t fzf_to_dir)" == "function" ]]; then
+    alias cdd='fzf_to_dir ~/projects/'
+    alias cds='fzf_to_dir'
+fi

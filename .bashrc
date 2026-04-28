@@ -6,6 +6,24 @@
 eval "$(fzf --bash)"
 eval "$(zoxide init bash)"
 
+# Autodetect window width and adapt $MANWIDTH to it.
+# There's some weird padding issue that's breaking the wrapping of the text, so I am preemptively removing 8 columns from it.
+man() {
+    local width=$(($(tput cols) - 8))
+    [ -n "$MANWIDTH" ] && [ $width -gt $MANWIDTH ] && width=$MANWIDTH
+    env MANWIDTH=$width \
+        man "$@"
+}
+
+fzf_to_dir() {
+    local selected_dir
+    selected_dir=$(fd --exact-depth 1 --exclude node_modules -t d . "$1" | fzf +m --height 50% --preview 'tree -C -I node_modules -I target {}')
+    if [[ -n "$selected_dir" ]]; then
+        # Change to the selected directory
+        cd "$selected_dir" || return 1
+    fi
+}
+
 # Use bash-completion, if available, and avoid double-sourcing
 [[ $PS1 &&
     ! ${BASH_COMPLETION_VERSINFO:-} &&
