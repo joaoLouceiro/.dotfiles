@@ -24,6 +24,20 @@ fzf_to_dir() {
     fi
 }
 
+function fzf_docker_start() {
+    local output
+    local header
+    local selected_container
+
+    output="$(docker ps -a --format 'table {{.Names}}\t{{.ID}}\t{{.Ports}}\t{{.Status}}')"
+    header="$(echo "$output" | head -n 1)"
+    selected_container="$(echo "$output" | tail -n +2 | fzf --header="$header" | awk '{print $1}')"
+    if [[ -n "${selected_container}" ]]; then
+        docker start "${selected_container}"
+    fi
+
+}
+
 # Use bash-completion, if available, and avoid double-sourcing
 [[ $PS1 &&
     ! ${BASH_COMPLETION_VERSINFO:-} &&
