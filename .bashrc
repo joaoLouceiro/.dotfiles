@@ -33,9 +33,24 @@ function fzf_docker_start() {
     header="$(echo "$output" | head -n 1)"
     selected_container="$(echo "$output" | tail -n +2 | fzf --header="$header" | awk '{print $1}')"
     if [[ -n "${selected_container}" ]]; then
-        docker start "${selected_container}"
-    fi
+        if [[ "$(docker inspect -f '{{.State.Status}}' "$selected_container")" == "running" ]]; then
+            echo "${selected_container} is running."
+            echo "Do you want to stop it?"
+            select yn in "Yes" "No"; do
+                local rep=${yn:-$REPLY}
+                case $rep in
+                Yes | yes | y)
+                    echo "$(docker stop "${selected_container}") stopped"
+                    break
+                    ;;
+                No | no | n) exit ;;
+                esac
+            done
 
+        else
+            echo "$(docker start "${selected_container}") started"
+        fi
+    fi
 }
 
 # Use bash-completion, if available, and avoid double-sourcing
