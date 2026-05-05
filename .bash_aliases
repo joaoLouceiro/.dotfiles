@@ -11,7 +11,7 @@ alias cp='cp -i'
 
 # the XDG default folders clutter the view. I know they are there, no need showing them.
 alias ls='LC_COLLATE=C ls --group-directories-first --color=auto -IDesktop -IDocuments -IDownloads -IMusic -IPictures -IPublic -ITemplates -IVideos -I~'
-alias ll='ls -la --color=auto'
+alias ll='ls -lAh --color=auto'
 
 alias cat='bat'
 alias cl='clear'
@@ -29,7 +29,7 @@ if type nvim >/dev/null 2>&1; then
     alias vim='nvim'
 fi
 
-if [[ "$(type -t fzf_to_dir)" == "function" ]]; then
+if typeset -f fzf_to_dir >/dev/null; then
     alias cdd='fzf_to_dir ~/projects/'
     alias cds='fzf_to_dir'
 fi

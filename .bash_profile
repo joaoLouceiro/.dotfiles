@@ -12,7 +12,9 @@ PATH+="$HOME/.npm-global/bin:"
 export PATH
 
 export HISTCONTROL=ignoreboth:erasedups
-export LC_ALL=C
+
+# LC_COLLATE is used for sorting and stuff
+export LC_COLLATE=C
 
 if type nvim >/dev/null 2>&1; then
     export EDITOR=nvim
