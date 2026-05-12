@@ -1,3 +1,5 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
 format = """
 $os\
 $username\
@@ -6,14 +8,58 @@ $directory\
 $git_branch\
 $git_state\
 $git_status\
-$character"""
-
-right_format = """
-$git_branch\
-"""
+$fill\
+$c\
+$cpp\
+$rust\
+$golang\
+$nodejs\
+$bun\
+$php\
+$java\
+$kotlin\
+$haskell\
+$python\
+$line_break$character"""
 
 add_newline = false
 palette = "everforest"
+
+[palettes.everforest]
+bg_dim = "#232a2e"
+bg0 = "#2d353b"
+bg1 = "#343f44"
+bg2 = "#3d484d"
+bg3 = "#475258"
+bg4 = "#4f585e"
+bg5 = "#56635f"
+bg_visual = "#543a48"
+bg_red = "#514045"
+bg_green = "#425047"
+bg_blue = "#3a515d"
+bg_yellow = "#4d4c43"
+
+fg = "#d3c6aa"
+red = "#e67e80"
+
+orange = "#e69875"
+yellow = "#dbbc7f"
+green = "#a7c080"
+aqua = "#83c092"
+blue = "#7fbbb3"
+purple = "#d699b6"
+grey0 = "#7a8478"
+grey1 = "#859289"
+grey2 = "#9da9a0"
+statusline1 = "#a7c080"
+statusline2 = "#d3c6aa"
+statusline3 = "#e67e80"
+
+[line_break]
+disabled = false
+
+[fill]
+symbol = " "
 
 [os]
 disabled = false
@@ -59,43 +105,92 @@ truncation_length = 3
 truncation_symbol = "…/"
 format = "[ $path]($style)[$read_only]($read_only_style) "
 
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = "󰝚 "
+"Pictures" = " "
+"projects" = "󰲋 "
+
 [git_branch]
 style = "fg:green"
 symbol = " "
 format = "[$symbol$branch(:$remote_branch)]($style) "
 
+[git_status]
+ahead = '⇡${count}'
+diverged = '⇕⇡${ahead_count}⇣${behind_count}'
+behind = '⇣${count}'
+format = '[(\[$all_status$ahead_behind\])]($style)'
+
 [character]
 success_symbol = '[](bold green)'
 error_symbol = '[](bold red)'
 
-[palettes.everforest]
-bg_dim = "#232a2e"
-bg0 = "#2d353b"
-bg1 = "#343f44"
-bg2 = "#3d484d"
-bg3 = "#475258"
-bg4 = "#4f585e"
-bg5 = "#56635f"
-bg_visual = "#543a48"
-bg_red = "#514045"
-bg_green = "#425047"
-bg_blue = "#3a515d"
-bg_yellow = "#4d4c43"
+[nodejs]
+symbol = ""
+style = "grey0"
+format = '[ $symbol( $version) ]($style)'
 
-fg = "#d3c6aa"
-red = "#e67e80"
+[bun]
+symbol = ""
+style = "grey0"
+format = '[ $symbol( $version) ]($style)'
 
-orange = "#e69875"
-yellow = "#dbbc7f"
-green = "#a7c080"
-aqua = "#83c092"
-blue = "#7fbbb3"
-purple = "#d699b6"
-grey0 = "#7a8478"
-grey1 = "#859289"
-grey2 = "#9da9a0"
-statusline1 = "#a7c080"
-statusline2 = "#d3c6aa"
-statusline3 = "#e67e80"
+[c]
+symbol = " "
+style = "grey0"
+format = '[ $symbol( $version) ]($style)'
 
+[cpp]
+symbol = " "
+style = "grey0"
+format = '[ $symbol( $version) ]($style)'
 
+[rust]
+symbol = ""
+style = "grey0"
+format = '[ $symbol( $version) ]($style)'
+
+[golang]
+symbol = ""
+style = "grey0"
+format = '[ $symbol( $version) ]($style)'
+
+[php]
+symbol = ""
+style = "grey0"
+format = '[ $symbol( $version) ]($style)'
+
+[java]
+symbol = ""
+style = "grey0"
+format = '[ $symbol( $version) ]($style)'
+
+[kotlin]
+symbol = ""
+style = "grey0"
+format = '[ $symbol( $version) ]($style)'
+
+[haskell]
+symbol = ""
+style = "grey0"
+format = '[ $symbol( $version) ]($style)'
+
+[python]
+symbol = ""
+style = "grey0"
+format = '[ $symbol( $version) ]($style)'
+
+[docker_context]
+symbol = ""
+style = "blue"
+format = '[[ $symbol( $context) ](fg:#83a598 blue)]($style)'
+
+[conda]
+style = "blue"
+format = '[[ $symbol( $environment) ](fg:#83a598 blue)]($style)'
+
+[pixi]
+style = "blue"
+format = '[[ $symbol( $version)( $environment) ](fg:color_bg1 blue)]($style)'
