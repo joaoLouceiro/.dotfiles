@@ -6,16 +6,6 @@
 
 [[ "$0" == "bash" ]] && [[ -f ~/.bashrc ]] && . ~/.bashrc
 
-PATH+="$HOME/.cargo/bin:"
-PATH+="$HOME/.local/bin:"
-PATH+="$HOME/.npm-global/bin:"
-export PATH
-
-export HISTCONTROL=ignoreboth:erasedups
-
-# LC_COLLATE is used for sorting and stuff
-export LC_COLLATE=C
-
 if type nvim >/dev/null 2>&1; then
     export EDITOR=nvim
     export MANPAGER="nvim +Man!"
@@ -35,3 +25,14 @@ if type fzf >/dev/null 2>&1; then
 else
     echo "fzf not found."
 fi
+
+export HISTCONTROL=ignoreboth:erasedups
+# LC_COLLATE is used for sorting and stuff
+export LC_COLLATE=C
+export VCPKG_ROOT="/opt/vcpkg"
+
+PATH+="$HOME/.cargo/bin:"
+PATH+="$HOME/.local/bin:"
+PATH+="$HOME/.npm-global/bin:"
+PATH+="$VCPKG_ROOT:"
+export PATH
