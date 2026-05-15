@@ -4,8 +4,5 @@ return {
     diagnostics = {
       float = { border = "rounded" },
     },
-    servers = {
-      clangd = {},
-    },
   },
 }

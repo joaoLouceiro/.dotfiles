@@ -8,6 +8,12 @@ return {
             maven = {
               downloadSources = true,
             },
+            eclipse = {
+              downloadSources = true,
+            },
+            gradle = {
+              downloadSources = true,
+            },
           },
         },
       },
