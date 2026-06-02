@@ -4,7 +4,6 @@
 # took these out to a new file, in case I want to use them for zsh
 #
 
-# Make possibly destructive
 alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -i'
@@ -27,6 +26,7 @@ if type nvim >/dev/null 2>&1; then
     alias v='nvim'
     alias vi='nvim'
     alias vim='nvim'
+    alias cv='NVIM_APPNAME=nvim-clean nvim'
 fi
 
 if typeset -f fzf_to_dir >/dev/null; then

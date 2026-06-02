@@ -4,10 +4,6 @@
 [[ -f ~/.scripts.sh ]] && . ~/.scripts.sh
 # setterm -linewrap off
 
-eval "$(ssh-agent -s)" >/dev/null
-eval "$(fzf --bash)"
-eval "$(zoxide init bash)"
-
 # Use bash-completion, if available, and avoid double-sourcing
 [[ $PS1 &&
     ! ${BASH_COMPLETION_VERSINFO:-} &&
@@ -15,6 +11,28 @@ eval "$(zoxide init bash)"
     . /usr/share/bash-completion/bash_completion
 
 [[ -f ~/.bash_aliases ]] && . ~/.bash_aliases
+
+eval "$(ssh-agent -s)" >/dev/null
+if command -v fzf &>/dev/null; then
+    eval "$(fzf --bash)"
+else
+    echo "fzf not found"
+fi
+if command -v zoxide &>/dev/null; then
+    eval "$(zoxide init bash)"
+else
+    echo "zoxide not found"
+fi
+if command -v minikube &>/dev/null; then
+    source <(minikube completion bash)
+else
+    echo "minikube not found"
+fi
+if command -v kubectl &>/dev/null; then
+    source <(kubectl completion bash)
+else
+    echo "kubectl not found"
+fi
 
 export TERM=xterm-256color
 
