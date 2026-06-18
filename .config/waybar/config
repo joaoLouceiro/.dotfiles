@@ -18,26 +18,25 @@
         "network", 
         "pulseaudio", 
         "backlight", 
-        "keyboard-state", 
+        // "keyboard-state", 
         "battery", 
         "clock",
-        "tray"
     ],
     // Modules configuration
     "sway/workspaces": {
         "disable-scroll": true,
-        "all-outputs": true,
-        // "format": "{name}: {icon}",
-        // "format-icons": {
-        //     "1": "",
-        //     "2": "",
-        //     "3": "",
-        //     "4": "",
-        //     "5": "",
-        //     "urgent": "",
-        //     "focused": "",
-        //     "default": ""
-        // }
+        "all-outputs": false,
+        "format": "{name}: {icon}",
+        "format-icons": {
+            "1": "",
+            "2": "󰖟",
+            "3": "",
+            "4": "",
+            "5": "",
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        }
     },
     "keyboard-state": {
         "numlock": true,
@@ -47,6 +46,9 @@
             "locked": "",
             "unlocked": ""
         }
+    },
+    "sway/window": {
+        "max-length": 80
     },
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
@@ -86,7 +88,7 @@
     },
     "tray": {
         // "icon-size": 21,
-        "spacing": 10
+        "spacing": 10,
     },
     "clock": {
         // "timezone": "America/New_York",
@@ -123,7 +125,7 @@
         "format-linked": "{ifname} (No IP) 󰈀",
         "format-disconnected": "Disconnected ⚠",
         // "format-alt": "{ifname}: {ipaddr}/{cidr}"
-        "on-click": "nm-applet"
+        "on-click": "nm-connection-editor"
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
