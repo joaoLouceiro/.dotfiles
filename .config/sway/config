@@ -22,7 +22,7 @@ set $menu wofi --show drun
 
 ### Output configuration
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/13977513.jpg fill
+output * bg ~/Pictures/backgrounds/active fill
 
 output eDP-1 position 0 0
 output HDMI-A-1 position 1920 0
@@ -49,7 +49,7 @@ workspace 8 output HDMI-A-1
 #
 exec swayidle -w \
          timeout 300 'swaylock -f -c 000000' \
-         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         timeout 400 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
          before-sleep 'swaylock -f -c 000000'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off

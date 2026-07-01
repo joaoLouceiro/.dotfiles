@@ -9,14 +9,15 @@
         "sway/workspaces",
         "sway/mode",
         "sway/scratchpad",
+        "sway/window",
         "custom/media"
     ],
     "modules-center": [
-        "sway/window"
     ],
     "modules-right": [
         "network", 
-        "pulseaudio", 
+        "mpris",
+        "pulseaudio",
         "backlight", 
         // "keyboard-state", 
         "battery", 
@@ -97,8 +98,8 @@
     },
     "backlight": {
         // "device": "acpi_video1",
-        "format": "{percent}%",
-        "format-icons": []
+        "format": "{percent}% {icon}",
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
     "battery": {
         "states": {
@@ -146,6 +147,16 @@
         },
         "on-click": "pavucontrol"
     },
+    "mpris": {
+    "format": "{player_icon} {artist} - {title}",
+    "format-paused": "{status_icon} {artist} - {title}",
+    "player-icons": {
+        "default": "󰝚",
+    },
+    "status-icons": {
+        "paused": ""
+    }
+},
     "custom/media": {
         "format": "{icon} {}",
         "return-type": "json",

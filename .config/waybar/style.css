@@ -1,31 +1,40 @@
 * {
-    border: none;
-    /* border-radius: 4px; */
+    margin-top: 1px;
+    margin-bottom: 1px;
     font-family: CaskaydiaCove Nerd Font Mono;
     font-size: 14px;
-    /* min-height: 0; */
 }
 
 #waybar {
-	background-color: rgba(46, 52, 64, 0.7);
-	/* background: transparent; */
-    padding-left: 4px;
+	background-color: rgba(46, 52, 64, 0.3);
 }
 
-#custom-date, #clock, #battery, #pulseaudio, #network, #language, #backlight, #workspaces, #window, #tray {
-	padding: 2px 8px;
-	/* margin: 4px 0px 0px 0px; */
+#custom-date, #clock, #battery, #pulseaudio, #network, #language, #backlight, #workspaces, #window, #tray, #mpris {
+	padding: 0px 16px;
 	color: #d3c6aa;
 	background-color: rgba(46, 52, 64, 0.7);
 }
 
-#workspaces {
+#network,#workspaces {
     margin-left: 4px;
-    border-radius: 4px;
+	border-radius: 8px 0px 0px 8px;
 }
 
-#window {
-    border-radius: 4px;
+#clock,#window{
+    margin-right: 4px;
+	border-radius: 0px  8px 8px 0px;
+}
+
+window#waybar.empty #window{
+    background:none;
+}
+
+#workspaces {
+	border-radius: 8px 0px 0px 8px;
+}
+
+window#waybar.empty #workspaces {
+    border-radius: 8px;
 }
 
 #workspaces button {
@@ -40,23 +49,5 @@
 
 #workspaces button.urgent {
     background-color: #e67e80;
-}
-
-#custom-power {
-	/* border-radius: 4px; */
-	margin-right: 4px;
-	margin-top: 4px;
-	margin-bottom: 4px;
-	margin-left: 0px;
-	/* padding: 4px 8px; */
-}
-
-#clock{
-    border-radius: 0px 4px 4px 0px;
-    margin-right: 4px;
-}
-
-#network {
-	border-radius: 4px 0px 0px 4px;
 }
 
