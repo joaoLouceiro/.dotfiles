@@ -110,9 +110,9 @@ format = "[ $path]($style)[$read_only]($read_only_style) "
 "Downloads" = " "
 "Music" = "󰝚 "
 "Pictures" = " "
-"projects" = "󰲋 "
+# "projects" = "󰲋 "
 
-[git_branch]
+
 style = "fg:green"
 symbol = " "
 format = "[$symbol$branch(:$remote_branch)]($style) "

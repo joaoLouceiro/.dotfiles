@@ -2,9 +2,13 @@
 # ~/.bash_profile
 #
 # This is where I keep all my environment variables. I'm pretty sure there are some more complex uses for it, but for now it suffices
-#
 
-[[ "$0" == "bash" ]] && [[ -f ~/.bashrc ]] && . ~/.bashrc
+if [ -n "$BASH_VERSION" -a -n "$PS1" ]; then
+    # include .bashrc if it exists
+    if [ -f "$HOME/.bashrc" ]; then
+        . "$HOME/.bashrc"
+    fi
+fi
 
 if type nvim >/dev/null 2>&1; then
     export EDITOR=nvim
@@ -36,3 +40,12 @@ PATH+="$HOME/.local/bin:"
 PATH+="$HOME/.npm-global/bin:"
 PATH+="$VCPKG_ROOT:"
 export PATH
+
+# Auto-launch Sway on TTY1 login
+if [ "$(tty)" = "/dev/tty1" ]; then
+    read -p "Start Sway? [y]es or [n]o: " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        exec sway
+    fi
+fi

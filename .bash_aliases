@@ -22,6 +22,8 @@ alias config='/usr/bin/git --git-dir=/home/jlouceiro/.cfg/ --work-tree=/home/jlo
 alias fman='compgen -c | grep -e "^[a-z]" | uniq | fzf | xargs man'
 alias fcont='fzf_docker_start'
 
+alias icat='kitten icat'
+
 if type nvim >/dev/null 2>&1; then
     alias v='nvim'
     alias vi='nvim'
