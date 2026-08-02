@@ -1,0 +1,25 @@
+sort=-time
+background-color=#2e383cE0
+border-size=1
+border-color=#7fbbb3
+border-radius=2 
+icons=0
+max-icon-size=64
+default-timeout=15000
+ignore-timeout=1
+font=GeistMono Nerd Font Propo 14
+text-color=#d3c6aa
+
+[urgency=low]
+border-color=#83c092
+
+[urgency=normal]
+border-color=#dbbc7f
+
+[urgency=high]
+border-color=#e67e80
+default-timeout=0
+
+[category=mpd]
+default-timeout=10000
+group-by=category

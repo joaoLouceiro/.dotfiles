@@ -1,4 +1,14 @@
 for_window [title=".*"] opacity 0.95
+#
+# Status Bar:
+#
+# Read `man 5 sway-bar` for more information about this section.
+bar {
+    swaybar_command waybar
+}
+
+exec_always nm-applet --indicator
+
 
 # Read `man 5 sway` for a complete reference.
 
@@ -12,9 +22,19 @@ set $up k
 set $right l
 set $term kitty
 set $menu wofi --show drun
-set $browser qutebrowser
+set $browser firefox
 set $QT_QPA_PLATFORMTHEME kde
 set $XDG_CURRENT_DESKTOP KDE
+
+# Everforest Dark Soft Palette
+set $bg #2b3339
+set $dim_bg #232a2e
+set $fg #d3c6aa
+set $green #a7c080
+set $red #e67e80
+set $blue #7fbbb3
+set $yellow #dbbc7f
+set $accent $green
 
 ### Output configuration
 output * bg ~/Pictures/backgrounds/active fill
@@ -22,9 +42,9 @@ output eDP-1 position 0 0
 output HDMI-A-1 position 1920 0
 
 ### Workspaces
-assign [app_id="firefox"] 2
-assign [app_id="qutebrowser"] 2
 assign [app_id="obsidian"] 3
+assign [app_id="tidal-hifi"] 5
+assign [class="VirtualBox Manager"] 4
 
 workspace 1 output eDP-1
 workspace 3 output eDP-1
@@ -61,12 +81,13 @@ input type:keyboard {
     xkb_layout "nandvorak,pt"
     xkb_options "grp:alt_shift_toggle"
 }
-bindsym $mod+Ctrl+Shift+Space input type:keyboard xkb_switch_layout next
 
 #
 # Read `man 5 sway-input` for more information about this section.
 
 ### Key bindings
+bindsym $mod+Ctrl+Shift+Space input type:keyboard xkb_switch_layout next
+bindsym $mod+Shift+o obsidian
 #
 # Basics:
 #
@@ -227,45 +248,14 @@ bindsym $mod+r mode "resize"
     bindsym Print exec grim
 
 
-# Everforest Dark Soft Palette
-set $everforest_bg #2b3339
-set $everforest_dim_bg #232a2e
-set $everforest_fg #d3c6aa
-set $everforest_green #a7c080
-set $everforest_red #e67e80
-set $everforest_blue #7fbbb3
-set $everforest_yellow #dbbc7f
-
+include /etc/sway/config.d/*
 #
-# Status Bar:
-#
-# Read `man 5 sway-bar` for more information about this section.
-bar {
-    swaybar_command waybar
-    # position top
-    #
-    # # When the status_command prints a new line to stdout, swaybar updates.
-    # # The default just shows the current date and time.
-    # status_command while date +'%Y-%m-%d %X'; do sleep 1; done
-    # # status_edge_padding 10
-    #
-    # position bottom
-    # gaps 4
-    #
-    # colors {
-    #     statusline $everforest_fg
-    #     background $everforest_bg
-    #     inactive_workspace #32323200 $everforest_dim_bg #5c5c5c
-    #     focused_workspace $everforest_green $everforest_fg $everforest_bg
-    # }
-}
-
-# Window Configuration
-client.focused          $everforest_green $everforest_bg      $everforest_fg  $everforest_green $everforest_green
-client.focused_inactive $everforest_bg      $everforest_bg      $everforest_fg  $everforest_bg      $everforest_bg
-client.unfocused        $everforest_bg      $everforest_bg      $everforest_fg  $everforest_bg      $everforest_bg
-client.urgent           $everforest_red     $everforest_red     $everforest_fg  $everforest_red     $everforest_red
-client.placeholder      $everforest_bg      $everforest_bg      $everforest_fg  $everforest_bg      $everforest_bg
+# Styling
+client.focused          $accent  $bg      $fg  $accent $accent
+client.focused_inactive $bg      $bg      $fg  $bg      $bg
+client.unfocused        $bg      $bg      $fg  $bg      $bg
+client.urgent           $red     $red     $fg  $red     $red
+client.placeholder      $bg      $bg      $fg  $bg      $bg
 
 # Border style
 default_border pixel 2
@@ -273,6 +263,3 @@ default_floating_border pixel 2
 
 gaps inner 4
 
-exec_always nm-applet --indicator
-
-include /etc/sway/config.d/*
