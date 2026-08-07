@@ -1,31 +1,33 @@
-# ------------------ START compinstall ------------------ #
-# The following lines were added by compinstall
-
-zstyle ':completion:*' completer _complete _ignored _approximate
-zstyle :compinstall filename '/home/jlouceiro/.zshrc'
-
-zstyle '*:compinit' arguments -D -i -u -C -w
-# bindkey              '^I' menu-select
-# bindkey "$terminfo[kcbt]" menu-select
-# bindkey              '^N'         menu-select
-# bindkey              '^P' menu-select
-zstyle ':autocomplete:menu-search:*' insert-unambiguous yes
-
-# bindkey              '^I'         menu-complete
-# bindkey "$terminfo[kcbt]" reverse-menu-complete
+bindkey              '^N'         menu-select
+bindkey              '^P' menu-select
+# zstyle ':autocomplete:menu-search:*' insert-unambiguous yes
 
 autoload -Uz compinit
-compinit
-# End of lines added by compinstall
-# Lines configured by zsh-newuser-install
+typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
+if [ $(date +'%j') != $updated_at ]; then
+  compinit -i
+else
+  compinit -C -i
+fi
+
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
+
 setopt notify
-unsetopt autocd beep extendedglob nomatch
-bindkey -e
-# End of lines configured by zsh-newuser-install
-# ------------------ END compinstall ------------------ #
+setopt hist_ignore_all_dups # remove older duplicate entries from history
+setopt hist_reduce_blanks # remove superfluous blanks from history items
+setopt inc_append_history # save history entries as soon as they are entered
+setopt share_history # share history between different instances of the shell
+setopt auto_cd # cd by typing directory name if it's not a command
+setopt correct_all # autocorrect commands
+setopt auto_list # automatically list choices on ambiguous completion
+setopt auto_menu # automatically use menu completion
+setopt always_to_end # move cursor to end if word had one match
+
+zstyle ':completion:*' menu select # select completions with arrow keys
+zstyle ':completion:*' group-name '' # group results by category
+zstyle ':completion:::::' completer _expand _complete _ignored _approximate # enable approximate matches for completion
 
 source /usr/share/zsh-antidote/antidote.zsh
 antidote load
@@ -40,7 +42,7 @@ export ZDOT_DIR=$HOME/.config/zsh/
 eval "$(ssh-agent -s)" >/dev/null
 
 if command -v fzf &>/dev/null; then
-    eval "$(fzf --zsh)"
+    source <(fzf --zsh)
 else
     echo "fzf not found"
 fi
@@ -65,6 +67,14 @@ else
     echo "kubectl not found"
 fi
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+#
+# opencode
+export PATH=/home/jlouceiro/.opencode/bin:$PATH
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
