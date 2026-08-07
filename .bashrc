@@ -23,11 +23,6 @@ if command -v zoxide &>/dev/null; then
 else
     echo "zoxide not found"
 fi
-if command -v minikube &>/dev/null; then
-    source <(minikube completion bash)
-else
-    echo "minikube not found"
-fi
 if command -v kubectl &>/dev/null; then
     source <(kubectl completion bash)
 else
@@ -46,6 +41,10 @@ function statstring {
 PROMPT_COMMAND='PS1_CMD1=$(git branch --show-current 2>/dev/null)'
 
 PS1='\[\e[38;5;39;1m\]󰣇\[\e[0m\] \[\033[01;31m\]$(statstring)\[\033[00m\]\[\033[01;32m\]\u@\h\[\033[00m\] \[\e[93;1m\]${PS1_CMD1}\[\e[0m\] \[\033[01;34m\]\w\[\033[00m\] \$ '
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"

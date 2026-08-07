@@ -1,6 +1,6 @@
 # zstyle ':autocomplete:menu-search:*' insert-unambiguous yes
 
-zstyle ':plugin:ez-compinit' 'compstyle' 'zshzoo'
+zstyle ':plugin:ez-compinit' 'compstyle' 'gremlin'
 
 # typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
 # if [ $(date +'%j') != $updated_at ]; then
@@ -57,11 +57,6 @@ if command -v starship &>/dev/null; then
     eval "$(starship init zsh)"
 else
     echo "starship not found"
-fi
-if command -v minikube &>/dev/null; then
-    source <(minikube completion zsh)
-else
-    echo "minikube not found"
 fi
 if command -v kubectl &>/dev/null; then
     source <(kubectl completion zsh)
