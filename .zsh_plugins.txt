@@ -4,15 +4,12 @@ jeffreytse/zsh-vi-mode
 # Bash plugins may also work
 rupa/z
 
-# empty lines are skipped
-
 # annotations are also allowed:
 romkatv/zsh-bench kind:path
-olets/zsh-abbr    kind:defer
 
 mattmc3/ez-compinit
 
 zsh-users/zsh-completions kind:fpath path:src
 zdharma-continuum/fast-syntax-highlighting  # Syntax highlighting
-zsh-users/zsh-autosuggestions               # Auto-suggestions
 zsh-users/zsh-history-substring-search      # Up/Down to search history
+

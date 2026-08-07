@@ -1,14 +1,16 @@
-bindkey              '^N'         menu-select
-bindkey              '^P' menu-select
 # zstyle ':autocomplete:menu-search:*' insert-unambiguous yes
 
-autoload -Uz compinit
-typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
-if [ $(date +'%j') != $updated_at ]; then
-  compinit -i
-else
-  compinit -C -i
-fi
+zstyle ':plugin:ez-compinit' 'compstyle' 'zshzoo'
+
+# typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
+# if [ $(date +'%j') != $updated_at ]; then
+#   compinit -i
+# else
+#   compinit -C -i
+# fi
+
+# bindkey              '^N' menu-select
+# bindkey              '^P' menu-select
 
 HISTFILE=~/.histfile
 HISTSIZE=1000
@@ -66,6 +68,10 @@ if command -v kubectl &>/dev/null; then
 else
     echo "kubectl not found"
 fi
+__git_files () { 
+    _wanted files expl 'local files' _files     
+}
+
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
