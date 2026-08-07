@@ -9,9 +9,9 @@
 window {
   margin: 0px;
   padding: 10px;
-  border: 1px solid @accent;
+  /* border: 1px solid @accent; */
   border-radius: 6px;
-  background-color: alpha(@bg1, 0.6);
+  background-color: alpha(@bg2, 0.8);
   animation: slideIn 0.5s ease-in-out both;
 }
 
@@ -31,7 +31,7 @@ window {
   margin: 5px;
   padding: 10px;
   border: none;
-  background-color: alpha(@bg1, 0.6);
+  background-color: alpha(@bg1, 0.8);
   animation: fadeIn 0.5s ease-in-out both;
 }
 
@@ -51,7 +51,7 @@ window {
   margin: 5px;
   padding: 10px;
   border: none;
-  background-color: alpha(@bg1, 0.6);
+  background-color: alpha(@bg1, 0.8);
 }
 
 /* Scroll */
@@ -67,7 +67,7 @@ window {
   padding: 10px;
   border: none;
   color: @accent;
-  background-color: alpha(@bg2, 0.7);
+  background-color: alpha(@bg2, 0.8);
   animation: fadeIn 0.5s ease-in-out both;
 }
 
@@ -82,7 +82,7 @@ window {
 
 /* Selected Entry */
 #entry:selected {
-  background-color: alpha(@accent, 0.7);
+  background-color: alpha(@accent, 0.8);
 }
 
 #entry:selected #text {
