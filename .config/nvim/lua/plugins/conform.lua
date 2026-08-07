@@ -6,6 +6,8 @@ return {
       typescriptreact = { "prettier" },
       javascript = { "prettier" },
       javascriptreact = { "prettier" },
+      astro = { "prettier" },
+      css = { "prettier" },
     },
   },
 }
