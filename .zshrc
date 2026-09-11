@@ -43,16 +43,11 @@ export ZDOT_DIR=$HOME/.config/zsh/
 
 eval "$(ssh-agent -s)" >/dev/null
 
-if command -v fzf &>/dev/null; then
-    source <(fzf --zsh)
-else
-    echo "fzf not found"
-fi
-if command -v zoxide &>/dev/null; then
-    eval "$(zoxide init zsh)"
-else
-    echo "zoxide not found"
-fi
+# if command -v zoxide &>/dev/null; then
+#     eval "$(zoxide init zsh)"
+# else
+#     echo "zoxide not found"
+# fi
 if command -v starship &>/dev/null; then
     eval "$(starship init zsh)"
 else
@@ -66,7 +61,15 @@ fi
 __git_files () { 
     _wanted files expl 'local files' _files     
 }
-
+if command -v fzf &>/dev/null; then
+    zvm_after_init() {
+      source <(fzf --zsh)
+    }
+    # source <(fzf --zsh)
+    # ZVM_INIT_MODE=sourcing
+else
+    echo "fzf not found"
+fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
