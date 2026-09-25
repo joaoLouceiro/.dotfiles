@@ -7,7 +7,7 @@ return {
       },
       copilot = {
         status = {
-          enabled = false,
+          enabled = true,
         },
       },
     },

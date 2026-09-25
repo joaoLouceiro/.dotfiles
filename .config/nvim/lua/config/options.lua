@@ -4,9 +4,9 @@
 
 vim.opt.termguicolors = true
 -- number of spaces used for each step of (auto)indent
-vim.opt.shiftwidth = 4
+vim.opt.shiftwidth = 2
 -- number of spaces a <Tab> in the text stands for
-vim.opt.tabstop = 4
+vim.opt.tabstop = 2
 -- expand <Tab> to spaces in Insert mode
 vim.opt.expandtab = true
 -- Show hidden characters in Markdown and stuff

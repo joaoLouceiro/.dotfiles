@@ -23,4 +23,19 @@ return {
     })
     vim.lsp.enable("jdtls")
   end,
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      setup = {
+        jdtls = function(_, opts)
+          -- Disable inlay hints specifically for JDTLS
+          opts.settings = opts.settings or {}
+          opts.settings.java = opts.settings.java or {}
+          opts.settings.java.inlayHints = {
+            parameterNames = { enabled = "none" },
+          }
+        end,
+      },
+    },
+  },
 }
