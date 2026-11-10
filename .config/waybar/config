@@ -6,20 +6,22 @@
   // Choose the order of the modules
   "modules-left": [
     "sway/workspaces",
-    "sway/mode",
+    "sway/mode"
     // "sway/scratchpad",
-    "sway/window"
     //"custom/media"
   ],
-  "modules-center": [],
+  "modules-center": [
+    "sway/window"
+  ],
   "modules-right": [
     "mpris",
-    "network",
     "pulseaudio",
+    "network",
+    "keyboard-state",
     "backlight",
     "battery",
     "custom/keymap",
-    "clock",
+    "clock"
   ],
   "custom/keymap": {
     "format": "{}",
@@ -29,26 +31,24 @@
   "sway/workspaces": {
     "disable-scroll": true,
     "all-outputs": false,
-    "format": "{name}: {icon}",
+    "format": "{icon}",
     "format-icons": {
-      "1": "",
-      "2": "󰖟",
-      "3": "\ue6bb",
-      "4": "",
-      "5": "",
-      "10": "\ued75",
-      "urgent": "",
-      "focused": "",
-      "default": ""
+      "1": "󰊫",
+      "2": "󰊻",
+      "3": "",
+      // "4": "",
+      // "5": "󰊻",
+      "10": "",
+      "urgent": " "
     }
   },
   "keyboard-state": {
-    "numlock": true,
     "capslock": true,
-    "format": "{name} {icon}",
+    //"format": "{name} {icon}",
+    "format": "{icon}",
     "format-icons": {
       "locked": "",
-      "unlocked": ""
+      "unlocked": ""
     }
   },
   "sway/window": {
@@ -71,16 +71,16 @@
   },
   "backlight": {
     // "device": "acpi_video1",
-    "format": "{percent}% {icon}",
+    // "format": "{percent}% {icon}",
+    "format": "{icon}",
+    "tooltip-format": "Backlight: {percent}% {icon}",
     "format-icons": [
-      "",
       "",
       "",
       "",
       "",
       "",
       "",
-      "",
       ""
     ]
   },
@@ -90,10 +90,11 @@
       "warning": 30,
       "critical": 15
     },
-    "format": "{capacity}% {icon}",
-    "format-charging": "{capacity}% 󰃨",
-    "format-plugged": "{capacity}% ",
-    "format-alt": "{time} {icon}",
+    "format": "{icon}",
+    "format-charging": "󰃨",
+    "format-plugged": "",
+    // "format": "{capacity}% {icon}",
+    // "format-alt": "{time} {icon}",
     "format-icons": [
       "",
       "",
@@ -107,13 +108,14 @@
   },
   "network": {
     // "interface": "wlp2*", // (Optional) To force the use of this interface
-    "format-wifi": "{essid} ({signalStrength}%) ",
+    "format-wifi": "",
     "format-ethernet": "{ipaddr}/{cidr} 󰈀",
-    "tooltip-format": "{ifname} via {gwaddr} 󰈀",
     "format-linked": "{ifname} (No IP) 󰈀",
-    "format-disconnected": "Disconnected ⚠",
+    "format-disconnected": "⚠",
     // "format-alt": "{ifname}: {ipaddr}/{cidr}"
-    "on-click": "nm-connection-editor"
+    "tooltip-format": "{ifname} via {gwaddr} 󰈀",
+    "tooltip-format-wifi": "{signalStrength}% {essid} {ifname} via {gwaddr} 󰈀",
+    "on-click": "kitty nmtui"
   },
   "pulseaudio": {
     // "scroll-step": 1, // %, can be a float
@@ -136,7 +138,7 @@
         ""
       ]
     },
-    "on-click": "pavucontrol"
+    "on-click": "kitty alsamixer"
   },
   "mpris": {
     "format": "{player_icon} {artist} - {title}",
@@ -148,6 +150,6 @@
     "status-icons": {
       "paused": ""
     },
-    "max-length": 50
+    "max-length": 30
   }
 }
